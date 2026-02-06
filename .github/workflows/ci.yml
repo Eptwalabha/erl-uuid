@@ -17,10 +17,10 @@ jobs:
       fail-fast: false
       matrix:
         erlang:
-          - otp: "27"
-            rebar3: "3.22.1"
-          - otp: "25"
-            rebar3: "3.22.1"
+          - otp: "27.3.3"
+            rebar3: "3.24.0"
+          - otp: "25.3.2"
+            rebar3: "3.23.0"
 
     runs-on: ubuntu-22.04
 
