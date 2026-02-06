@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export ERL_AFLAGS="+pc unicode -enable-feature all"
+
+make all
+while inotifywait --event modify -r src test --exclude '\..*\.swp';
+do
+    echo " ======== modified ========"
+    make cover
+    make lint
+done
+
