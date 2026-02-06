@@ -3,6 +3,9 @@
 -export([v4/0]).
 -export([v7/0]).
 
+% used for test by meck
+-export([get_time/0, strong_rand/1]).
+
 v4() ->
     <<A:32, B:16, C:12, D:14, E:48, _:6>> = uuid:strong_rand(16),
     to_str([<<A:32>>, <<B:16>>, <<4:4, C:12>>, <<2:2, D:14>>, <<E:48>>]).
