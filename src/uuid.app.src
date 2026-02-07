@@ -1,7 +1,7 @@
 {application, uuid, [
     {description, "An Erlang library to generate uuid v4 & v7"},
-    {vsn, "1.0.0"},
-    {pkg_name, "ept-uuid"},
+    {vsn, "1.0.1"},
+    {pkg_name, "uuid_v47"},
     {registered, []},
     {applications, [
         kernel,
