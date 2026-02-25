@@ -4,16 +4,16 @@
 -export([v7/0]).
 
 % used for test by meck
--export([get_time/0, strong_rand/1]).
+-export([get_time/0]).
 
 v4() ->
-    <<A:32, B:16, C:12, D:14, E:48, _:6>> = uuid:strong_rand(16),
+    <<A:32, B:16, C:12, D:14, E:48, _:6>> = random_bytes(16),
     to_str([<<A:32>>, <<B:16>>, <<4:4, C:12>>, <<2:2, D:14>>, <<E:48>>]).
 
 v7() ->
     Timestamp = uuid:get_time(),
     <<A:32, B:16>> = <<Timestamp:48>>,
-    <<C:12, D:14, E:48, _:6>> = uuid:strong_rand(10),
+    <<C:12, D:14, E:48, _:6>> = random_bytes(10),
     to_str([<<A:32>>, <<B:16>>, <<7:4, C:12>>, <<2:2, D:14>>, <<E:48>>]).
 
 to_str([_, _, _, _, _] = Parts) ->
@@ -21,7 +21,7 @@ to_str([_, _, _, _, _] = Parts) ->
     string:lowercase(UUId).
 
 get_time() ->
-    os:system_time(millisecond).
+    erlang:system_time(millisecond).
 
-strong_rand(Size) ->
-    crypto:strong_rand_bytes(Size).
+random_bytes(Size) ->
+    list_to_binary([rand:uniform(256) || _ <- lists:seq(1, Size)]).
