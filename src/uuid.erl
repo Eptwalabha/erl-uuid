@@ -24,4 +24,4 @@ get_time() ->
     erlang:system_time(millisecond).
 
 random_bytes(Size) ->
-    list_to_binary([rand:uniform(256) || _ <- lists:seq(1, Size)]).
+    list_to_binary([rand:uniform(256) - 1 || _ <- lists:seq(1, Size)]).
